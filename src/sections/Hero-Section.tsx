@@ -18,7 +18,8 @@ export default function HeroSection(props: IHeroSectionProps) {
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-10'>
           <HeroImage className='flex lg:hidden' />
           <div>
-            <HeroLogoBadge className='max-w-fit hidden lg:flex mb-4' />
+            {/* <HeroLogoBadge className='max-w-fit hidden lg:flex mb-4' /> */}
+            <div className='hidden lg:flex h-10 mb-4' />
             <h1 className='text-center lg:text-left text-5xl sm:text-6xl lg:text-7xl font-black font-heading capitalize'>
               the future of block chain is here
             </h1>

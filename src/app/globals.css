@@ -2,26 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    @apply antialiased bg-surface-pattern text-zinc-300 font-body;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.cta-btn:after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 0px;
+  right: -0.5px;
+  clip-path: polygon(100% 0, 100% 0%, 100% 100%, 0 0);
+  @apply bg-surface-pattern;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+.hero-image-rotation {
+  animation: rotate 20s normal linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

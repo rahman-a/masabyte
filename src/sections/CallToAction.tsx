@@ -13,7 +13,7 @@ export default function CallToAction({}: Props) {
             <Hexagone className='size-[450px] md:size-[600px] xl:size-[800px] text-fuchsia-500/10' />
           </div>
           <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2'>
-            <Hexagone className='size-[600px] md:size-[900px] xl:size-[1200px] text-fuchsia-500/10 rotate-45' />
+            <Hexagone className='size-[600px] md:size-[900px] xl:size-[1200px] text-fuchsia-500/10 rotate-45 md:rotate-0' />
           </div>
           <div className='flex flex-col gap-6 items-center'>
             <h2 className='font-heading text-4xl md:text-5xl xl:text-6xl text-center font-bold'>

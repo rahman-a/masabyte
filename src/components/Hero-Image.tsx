@@ -2,8 +2,8 @@
 import Image from 'next/image'
 import * as React from 'react'
 import IsoCubicImage from '@/assets/images/icosahedron.png'
-import { ReactComponent as Hexagone } from '@/assets/icons/hexagon.svg'
-import { cn, rotate } from '@/utils'
+import { cn } from '@/utils'
+import { Hexagone } from './ui/Hexagone'
 
 type IHeroImageProps = React.HTMLAttributes<HTMLDivElement>
 
@@ -12,10 +12,24 @@ export function HeroImage({ className }: IHeroImageProps) {
     <div className={cn('flex justify-center', className)}>
       <div className='inline-flex relative z-0'>
         <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0'>
-          <Hexagone className='size-[300px] lg:size-[600px] text-fuchsia-500/10 rotate-[15deg]' />
+          <Hexagone
+            size={600}
+            className='hidden md:block [&_svg]:rotate-[15deg]'
+          />
+          <Hexagone
+            size={400}
+            className='hidden sm:block md:hidden [&_svg]:rotate-[15deg]'
+          />
+          <Hexagone
+            size={200}
+            className='block sm:hidden [&_svg]:rotate-[15deg] [&_svg]:stroke-[0.5]'
+          />
         </div>
         <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0'>
-          <Hexagone className='size-[400px] lg:size-[800px] text-fuchsia-500/10 rotate-[5deg] stroke-[0.1]' />
+          <Hexagone
+            size={800}
+            className='hidden sm:block [&_svg]:rotate-[5deg] [&_svg]:stroke-[0.1]'
+          />
         </div>
         <Image
           src={IsoCubicImage}
@@ -34,7 +48,7 @@ export function HeroImage({ className }: IHeroImageProps) {
           unoptimized
           id='hero-image'
           className={cn(
-            'w-[100px] lg:w-[450px] xl:w-[450px] hero-image-rotation'
+            'w-[100px] lg:w-[450px] xl:w-[450px] max-w-none hero-image-rotation'
           )}
         />
       </div>

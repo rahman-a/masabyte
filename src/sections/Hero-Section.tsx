@@ -12,9 +12,9 @@ export default function HeroSection(props: IHeroSectionProps) {
       <div className='pointer-events-none absolute inset-x-0 -bottom-20 h-1/3 bg-gradient-to-t from-black via-black to-transparent lg:h-1/4' />
       <StarBackground className='-top-12' />
       <div className='container max-w-[100rem]'>
-        <div className='flex justify-center lg:hidden'>
+        {/* <div className='flex justify-center lg:hidden'>
           <HeroLogoBadge />
-        </div>
+        </div> */}
         <div className='grid grid-cols-1 lg:grid-cols-2 gap-10'>
           <HeroImage className='flex lg:hidden' />
           <div>

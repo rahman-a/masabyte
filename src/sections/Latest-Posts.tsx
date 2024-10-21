@@ -32,7 +32,7 @@ export default async function LatestPosts({}: Props) {
     })
     .slice(0, 4)
   return (
-    <section className='py-48'>
+    <section className='pt-48 pb-28'>
       <div className='container mx-auto'>
         <div>
           <h2 className='font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-center mx-auto max-w-2xl'>

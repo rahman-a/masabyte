@@ -4,6 +4,7 @@ import FeaturesCardsSections from '@/sections/Features-Cards-Sections'
 import FeaturesGrid from '@/sections/Features-Grid'
 import TeckStack from '@/sections/Teck-Stack'
 import LatestPosts from '@/sections/Latest-Posts'
+import CallToAction from '@/sections/CallToAction'
 
 export const metadata = {
   title: 'BlockForge for blockchain',
@@ -20,6 +21,7 @@ export default function Home() {
       <FeaturesCardsSections />
       <FeaturesGrid />
       <LatestPosts />
+      <CallToAction />
     </>
   )
 }

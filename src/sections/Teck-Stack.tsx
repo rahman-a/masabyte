@@ -14,7 +14,7 @@ export default function TeckStack({}: Props) {
         </h2>
         <div className='relative mt-6'>
           <div className='absolute inset-0 bg-[#02091a] [mask-image:linear-gradient(90deg,transparent,transparent_5%,black_5%,transparent_100%)]' />
-          <div className='group flex overflow-hidden p-2 [--gap:1.5rem] [gap:var(--gap)] flex-row max-w-full [--duration:40s]'>
+          <div className='group flex overflow-hidden p-2 [--gap:2.5rem] [gap:var(--gap)] flex-row max-w-full [--duration:40s]'>
             {Array.from({ length: 4 }).map((_, index) => (
               <div
                 key={index}

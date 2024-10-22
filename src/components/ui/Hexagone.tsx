@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { motion } from 'framer-motion'
-import { cn } from '@/utils'
 
 export interface IHexagoneProps {
   className?: string
@@ -12,7 +11,7 @@ export function Hexagone({ className, size }: IHexagoneProps) {
   const [totalPathLength, setTotalPathLength] = React.useState(0)
 
   React.useLayoutEffect(() => {
-    if (pathRef.current) {
+    if (pathRef.current && size) {
       const pathLength = pathRef.current.getTotalLength()
       const scaledPathLength = (pathLength * size!) / 82
       setTotalPathLength(scaledPathLength)
@@ -52,7 +51,7 @@ export function Hexagone({ className, size }: IHexagoneProps) {
         initial={{ strokeDashoffset: 0 }}
         animate={{ strokeDashoffset: totalPathLength! * -1 }}
         transition={{
-          duration: 50,
+          duration: 100,
           ease: 'linear',
           repeat: Infinity,
         }}

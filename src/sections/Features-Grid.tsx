@@ -1,5 +1,7 @@
-import React from 'react'
+'use client'
+import React, { useRef } from 'react'
 import Image from 'next/image'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { CutCornerBtn } from '@/components/ui/CutCorner-Btn'
 import { TextBtn } from '@/components/ui/Text-Btn'
 import TorusKnot from '@/assets/images/torus-knot.png'
@@ -15,6 +17,39 @@ const list = [
 ]
 
 export default function FeaturesGrid({}: Props) {
+  const torusKnotRef = useRef(null)
+  const firstHemisphereRef = useRef(null)
+  const coneRef = useRef(null)
+  const secondHemisphereRef = useRef(null)
+  const { scrollYProgress: torusScrollYProgress } = useScroll({
+    target: torusKnotRef,
+    offset: ['start end', 'end start'],
+  })
+  const { scrollYProgress: firstHemisphereScrollYProgress } = useScroll({
+    target: firstHemisphereRef,
+    offset: ['start end', 'end start'],
+  })
+  const { scrollYProgress: coneScrollYProgress } = useScroll({
+    target: coneRef,
+    offset: ['start end', 'end start'],
+  })
+  const { scrollYProgress: secondHemisphereScrollYProgress } = useScroll({
+    target: secondHemisphereRef,
+    offset: ['start end', 'end start'],
+  })
+
+  const torusRotate = useTransform(torusScrollYProgress, [0, 1], [0, 20])
+  const coneRotate = useTransform(coneScrollYProgress, [0, 1], [0, 20])
+  const firstHemisphereRotate = useTransform(
+    firstHemisphereScrollYProgress,
+    [0, 1],
+    [-80, 0]
+  )
+  const secondHemisphereRotate = useTransform(
+    secondHemisphereScrollYProgress,
+    [0, 1],
+    [0, 50]
+  )
   return (
     <section className='mt-24 overflow-x-clip'>
       <div className='container'>
@@ -43,41 +78,56 @@ export default function FeaturesGrid({}: Props) {
             </div>
           </div>
           <div className='relative hidden md:block z-0 xl:-top-10'>
-            <Image
-              src={TorusKnot}
-              alt='cylinder'
-              width={500}
-              height={500}
-              className='size-80 xl:size-96 max-w-none'
-            />
-            <Image
-              src={Hemisphere}
-              alt='cubiod'
-              width={500}
-              height={500}
-              className='relative size-64 xl:size-72 max-w-none -mt-20 
-              -scale-x-[1] -z-10'
-            />
+            <motion.div ref={torusKnotRef} style={{ rotate: torusRotate }}>
+              <Image
+                src={TorusKnot}
+                alt='cylinder'
+                width={500}
+                height={500}
+                className='size-80 xl:size-96 max-w-none'
+              />
+            </motion.div>
+            <motion.div
+              ref={firstHemisphereRef}
+              style={{ rotate: firstHemisphereRotate }}
+              className='relative -mt-20 -scale-x-[1] -z-10'
+            >
+              <Image
+                src={Hemisphere}
+                alt='cubiod'
+                width={500}
+                height={500}
+                className='relative size-64 xl:size-72 max-w-none '
+              />
+            </motion.div>
           </div>
         </div>
         <div>
           <div className='grid grid-cols-1 md:grid-cols-3 mt-24 xl:gap-40'>
             <div className='relative hidden md:block z-0'>
               <div className='absolute -top-20 -left-24 xl:-top-24'>
-                <Image
-                  src={Cone}
-                  alt='cylinder'
-                  width={500}
-                  height={500}
-                  className='size-80 xl:size-96 max-w-none'
-                />
-                <Image
-                  src={Hemisphere}
-                  alt='cubiod'
-                  width={500}
-                  height={500}
-                  className='relative size-64 xl:size-72 max-w-none -mt-20  -z-10'
-                />
+                <motion.div ref={coneRef} style={{ rotate: coneRotate }}>
+                  <Image
+                    src={Cone}
+                    alt='cylinder'
+                    width={500}
+                    height={500}
+                    className='size-80 xl:size-96 max-w-none'
+                  />
+                </motion.div>
+                <motion.div
+                  className='relative -mt-20  -z-10'
+                  ref={secondHemisphereRef}
+                  style={{ rotate: secondHemisphereRotate }}
+                >
+                  <Image
+                    src={Hemisphere}
+                    alt='cubiod'
+                    width={500}
+                    height={500}
+                    className=' size-64 xl:size-72 max-w-none '
+                  />
+                </motion.div>
               </div>
             </div>
             <div className='col-span-2'>

@@ -1,36 +1,24 @@
-import React from 'react'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+'use client'
+import React, { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { Post } from '@/components/Post'
-import fs from 'fs'
-import path from 'path'
-import { cn, renderMDFile } from '@/utils'
+import { cn } from '@/utils'
 import { CutCornerBtn } from '@/components/ui/CutCorner-Btn'
 
-type Props = {}
-
-const getPosts = async () => {
-  const posts = []
-  const allDirs = fs.readdirSync(
-    path.join(process.cwd(), 'src/content', 'blog')
-  )
-  for (const dir of allDirs) {
-    const blog = fs.readFileSync(
-      path.join(process.cwd(), 'src/content', `blog/${dir}`),
-      'utf-8'
-    )
-    const post = await renderMDFile(blog)
-    posts.push(post)
-  }
-  return posts
+type Props = {
+  posts: any[]
 }
 
-export default async function LatestPosts({}: Props) {
-  const posts = await getPosts()
-  const sortedPosts = posts
-    .sort((a, b) => {
-      if (a.metadata.pubDate === b.metadata.pubDate) return 0
-      return a.metadata.pubDate > b.metadata.pubDate ? -1 : 1
-    })
-    .slice(0, 4)
+export default function LatestPosts({ posts }: Props) {
+  const postsRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: postsRef,
+    offset: ['start end', 'start center'],
+  })
+
+  const marginTranslate = useTransform(scrollYProgress, [0, 1], [0, 64])
+
   return (
     <section className='pt-48 pb-28'>
       <div className='container mx-auto'>
@@ -44,7 +32,7 @@ export default async function LatestPosts({}: Props) {
           </p>
           <div className='grid grid-cols-1 md:grid-cols-2 md:gap-8 mt-24'>
             <div className='flex flex-col gap-8'>
-              {sortedPosts.map((post, postIndex) => (
+              {posts.map((post, postIndex) => (
                 <div
                   key={postIndex}
                   className={cn({
@@ -59,8 +47,14 @@ export default async function LatestPosts({}: Props) {
                 </div>
               ))}
             </div>
-            <div className='flex flex-col gap-8 mt-8'>
-              {sortedPosts.map((post, postIndex) => (
+            <motion.div
+              className='flex flex-col gap-8'
+              style={{
+                marginTop: marginTranslate,
+              }}
+              ref={postsRef}
+            >
+              {posts.map((post, postIndex) => (
                 <div
                   key={postIndex}
                   className={cn({
@@ -74,7 +68,7 @@ export default async function LatestPosts({}: Props) {
                   />
                 </div>
               ))}
-            </div>
+            </motion.div>
           </div>
           <div className='flex justify-center mt-24'>
             <CutCornerBtn>Read more</CutCornerBtn>

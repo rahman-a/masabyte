@@ -3,6 +3,7 @@ import { ReactComponent as Logo } from '@/assets/icons/diamond.svg'
 import { MenuHamBtn } from '@/components/Menu-Ham-Btn'
 import { GlowBtn } from '@/components/ui/Glow-Btn'
 import { ReactComponent as AltLogo } from '@/assets/icons/logo.svg'
+import { Navbar } from '@/components/Navbar'
 
 export interface IHeaderSectionProps {}
 
@@ -25,7 +26,7 @@ export default function HeaderSection(props: IHeaderSectionProps) {
           </div>
           <div className='flex items-center gap-3'>
             <GlowBtn className='hidden md:inline-flex'>Get Started</GlowBtn>
-            <MenuHamBtn />
+            <Navbar />
           </div>
         </div>
       </div>

@@ -2,14 +2,18 @@
 import * as React from 'react'
 import { cn } from '@/utils'
 
-export interface IMenuBtnHamProps {}
+export interface IMenuBtnHamProps {
+  isExpandable: boolean
+  setIsExpandable: React.Dispatch<React.SetStateAction<boolean>>
+}
 
-export function MenuHamBtn(props: IMenuBtnHamProps) {
-  const [isExpandable, setIsExpandable] = React.useState(false)
-
+export function MenuHamBtn({
+  isExpandable,
+  setIsExpandable,
+}: IMenuBtnHamProps) {
   return (
     <div
-      className={cn('w-8 cursor-pointer space-y-1.5', {
+      className={cn('w-8 h-2 cursor-pointer space-y-1.5 z-20', {
         'space-y-0': isExpandable,
       })}
       onClick={() => setIsExpandable((prev) => !prev)}
@@ -30,15 +34,6 @@ export function MenuHamBtn(props: IMenuBtnHamProps) {
           }
         )}
       ></div>
-      {/* <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 '>
-      <div className='w-8 h-0.5 -translate-y-1 bg-white rounded-sm'></div>
-    </div>
-    <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 '>
-      <div className='w-8 h-0.5 translate-y-1 bg-white rounded-sm'></div>
-    </div>
-    <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 '>
-      <div className='w-8 h-0.5 translate-y-3 bg-white rounded-sm'></div>
-    </div> */}
     </div>
   )
 }

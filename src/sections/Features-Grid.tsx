@@ -43,12 +43,12 @@ export default function FeaturesGrid({}: Props) {
   const firstHemisphereRotate = useTransform(
     firstHemisphereScrollYProgress,
     [0, 1],
-    [-80, 0]
+    [-50, -20]
   )
   const secondHemisphereRotate = useTransform(
     secondHemisphereScrollYProgress,
     [0, 1],
-    [0, 50]
+    [20, 0]
   )
   return (
     <section className='mt-24 overflow-x-clip'>

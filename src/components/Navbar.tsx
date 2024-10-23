@@ -78,7 +78,7 @@ export function Navbar(props: INavbarProps) {
                         w-[calc(100%+2rem)] transition duration-300 origin-left scale-0 group-hover:scale-100'
                       />
                       <Link
-                        className='text-4xl md:text-5xl font-heading capitalize text-zinc-300 hover:text-zinc-200'
+                        className='text-4xl md:text-5xl font-heading font-extrabold capitalize text-zinc-400 hover:text-zinc-300'
                         href={link.href}
                       >
                         {link.name}
